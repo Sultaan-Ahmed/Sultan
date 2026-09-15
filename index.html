@@ -1,1 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sultan Ahmed — Apparel Merchandising, Technical Product Development &amp; Asia Sourcing</title>
+  <meta name="description" content="Sultan Ahmed is an apparel merchandising and sourcing specialist with 8.5+ years of experience in lingerie, nightwear, technical product development, costing and supplier management across Bangladesh, China and Sri Lanka." />
+  <meta property="og:title" content="Sultan Ahmed — Apparel Merchandising, Technical Product Development & Asia Sourcing" />
+  <meta property="og:description" content="8.5+ years of lingerie, nightwear and technical product development experience across Bangladesh, China and Sri Lanka." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--rose); outline-offset: 2px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #FAF8F5; color: #2C2825; overflow-x: hidden; }
+    :root {
+      --cream: #FAF8F5; --warm: #F5F1EC; --blush: #E8D5CC;
+      --rose: #C4897A; --slate: #3D4A56; --slate-lt: #6B7A87;
+      --charcoal: #2C2825; --mid: #7A6E68; --border: #E2DAD4;
+      --section: #F0EBE5;
+    }
+    .serif { font-family: 'Playfair Display', serif; }
 
+    /* ANIMATIONS */
+    .reveal, .reveal-l, .reveal-r {
+      opacity: 0; transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+    .reveal { transform: translateY(30px); }
+    .reveal-l { transform: translateX(-30px); }
+    .reveal-r { transform: translateX(30px); }
+    .reveal.on, .reveal-l.on, .reveal-r.on { opacity: 1; transform: none; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(250,248,245,0.95); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border); transition: box-shadow 0.3s;
+    }
+    nav.up { box-shadow: 0 2px 24px rgba(44,40,37,0.09); }
+    .nav-in {
+      max-width: 1280px; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: var(--charcoal); text-decoration: none; }
+    .logo span { color: var(--rose); }
+    .nl { display: flex; gap: 36px; }
+    .nl a { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nl a:hover, .nl a.on { color: var(--charcoal); }
+    .ncta { background: var(--slate); color: #fff; padding: 10px 24px; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .ncta:hover { background: var(--rose); }
+    .hbg { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hbg span { width: 24px; height: 1.5px; background: var(--charcoal); display: block; }
+    .mnav { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--border); z-index: 998; flex-direction: column; }
+    .mnav.open { display: flex; }
+    .mnav a { padding: 14px 40px; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border); }
+
+    /* REAL PHOTOGRAPHY TREATMENT */
+    .cover-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tone-warm { filter: saturate(1.04) contrast(1.02); }
+
+    /* STATEMENT BANNERS (full-bleed photo + caption strip) */
+    .stmt { width: 100%; }
+    .stmt-photo { width: 100%; aspect-ratio: 1444/517; overflow: hidden; }
+    .stmt-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .stmt-cap { background: var(--slate); text-align: center; padding: 26px 24px; }
+    .stmt-cap span { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(16px,2vw,24px); color: var(--blush); letter-spacing: 0.01em; }
+    @media (max-width: 640px) { .stmt-photo { aspect-ratio: 4/3; } }
+
+    /* GALLERY */
+    #gallery { background: var(--cream); }
+    .gal-head { text-align: center; max-width: 600px; margin: 0 auto 48px; }
+    .gal-head .rule { margin: 20px auto; }
+    .gal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .gal-item { position: relative; overflow: hidden; aspect-ratio: 4/5; }
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .gal-item:hover img { transform: scale(1.045); }
+    .gal-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 22px 18px; background: linear-gradient(to top, rgba(15,20,25,0.72), transparent); }
+    .gal-cap-l { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blush); margin-bottom: 4px; }
+    .gal-cap-t { font-family: 'Playfair Display', serif; font-size: 18px; color: #fff; }
+    @media (max-width: 768px) { .gal-grid { grid-template-columns: 1fr; } }
+
+    /* TRACK RECORD */
+    #track { background: var(--warm); }
+    .track-lead { max-width: 640px; margin: 0 auto 44px; text-align: center; }
+    .track-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .track-item { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 22px 18px; text-align: center; }
+    .track-n { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--slate); font-weight: 600; margin-bottom: 4px; }
+    .track-l { font-size: 11.5px; color: var(--mid); letter-spacing: 0.02em; line-height: 1.4; }
+    @media (max-width: 900px) { .track-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* HERO */
+    #home { display: grid; grid-template-columns: 1fr 1fr; padding-top: 68px; min-height: 100vh; }
+    .hl {
+      background: var(--slate); padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: center; position: relative;
+    }
+    .hl::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.08); }
+    .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blush); margin-bottom: 24px; }
+    .htitle { font-family: 'Playfair Display', serif; font-size: clamp(40px,4.5vw,64px); font-weight: 400; color: #fff; line-height: 1.1; margin-bottom: 28px; }
+    .htitle em { font-style: italic; color: var(--blush); }
+    .hsub { font-size: 15px; line-height: 1.78; color: rgba(255,255,255,0.62); margin-bottom: 48px; max-width: 400px; }
+    .hbtns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-w { background: #fff; color: var(--slate); padding: 14px 32px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-block; border: none; cursor: pointer; transition: background 0.2s; }
+    .btn-w:hover { background: var(--blush); }
+    .btn-g { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 13px 31px; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-g:hover { border-color: #fff; }
+    .hstats { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.08); margin-top: 64px; }
+    .hstat { background: rgba(255,255,255,0.04); padding: 20px 18px; }
+    .hstat-n { font-family: 'Playfair Display', serif; font-size: 28px; color: #fff; }
+    .hstat-l { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.42); margin-top: 4px; }
+    .hr { position: relative; overflow: hidden; background: var(--section); }
+    .himg { width: 100%; height: 100%; display: flex; flex-direction: column; }
+    .ph { width: 100%; flex: 1; background: var(--blush); display: flex; align-items: stretch; justify-content: center; position: relative; overflow: hidden; }
+    .ph::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(196,137,122,0.14) 0%, transparent 55%); pointer-events: none; z-index: 1; }
+    .hfloat { position: absolute; bottom: 36px; left: -10px; background: #fff; padding: 20px 24px; box-shadow: 0 8px 40px rgba(44,40,37,0.13); z-index: 10; max-width: 210px; }
+    .hfl { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rose); margin-bottom: 5px; }
+    .hfv { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--charcoal); }
+    .hfs { font-size: 11px; color: var(--mid); margin-top: 3px; }
+
+    /* MARQUEE */
+    .mq { background: var(--slate); padding: 15px 0; overflow: hidden; }
+    .mq-t { display: flex; white-space: nowrap; animation: mq 30s linear infinite; }
+    .mq:hover .mq-t, .mq:focus-within .mq-t { animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce) {
+      .mq-t { animation: none; }
+      .reveal, .reveal-l, .reveal-r { transition: none; }
+      .gal-item img, .stg-img img { transition: none; }
+    }
+    .mq-i { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); padding: 0 32px; border-right: 1px solid rgba(255,255,255,0.12); flex-shrink: 0; }
+    @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SECTIONS */
+    .sec { padding: 100px 40px; }
+    .win { max-width: 1280px; margin: 0 auto; }
+    .slbl { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); margin-bottom: 14px; }
+    .stitle { font-family: 'Playfair Display', serif; font-size: clamp(30px,3.5vw,48px); font-weight: 400; line-height: 1.2; color: var(--charcoal); }
+    .stitle em { font-style: italic; color: var(--rose); }
+    .rule { width: 40px; height: 2px; background: var(--rose); margin: 20px 0; }
+    .bt { font-size: 15px; line-height: 1.8; color: var(--mid); }
+
+    /* ABOUT */
+    #about { background: var(--cream); }
+    .sg { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .simg { position: relative; }
+    .simg-m { width: 100%; aspect-ratio: 4/5; background: var(--blush); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .simg-a { position: absolute; bottom: -28px; right: -28px; width: 55%; aspect-ratio: 1; background: var(--section); border: 6px solid var(--cream); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
+    .creds { display: flex; flex-direction: column; }
+    .cred { display: flex; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .cred:first-child { border-top: 1px solid var(--border); }
+    .cred-y { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--rose); min-width: 110px; padding-top: 3px; }
+    .cred-r { font-size: 15px; font-weight: 500; color: var(--charcoal); margin-bottom: 2px; }
+    .cred-c { font-size: 13px; color: var(--mid); }
+
+    /* SERVICES */
+    #services { background: var(--section); }
+    .si { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px; }
+    .sgd { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+    .sc { background: var(--cream); padding: 40px 32px; transition: background 0.25s; }
+    .sc:hover { background: #fff; }
+    .sc-n { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--rose); margin-bottom: 20px; display: block; }
+    .sc-t { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 400; color: var(--charcoal); margin-bottom: 14px; line-height: 1.3; }
+    .sc-d { font-size: 13px; line-height: 1.8; color: var(--mid); margin-bottom: 20px; }
+    .sc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .sc-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose); border: 1px solid var(--blush); padding: 4px 10px; }
+
+    /* STUDIO */
+    #studio { background: var(--warm); }
+    .stg { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .stg-img { position: relative; width: 100%; aspect-ratio: 3/2; overflow: hidden; }
+    .stg-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (max-width: 1024px) { .stg { grid-template-columns: 1fr; gap: 48px; } }
+
+    /* CAPABILITIES */
+    #capabilities { background: var(--slate); }
+    .capg { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .capl { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.1); margin-top: 40px; }
+    .capi { background: rgba(255,255,255,0.04); padding: 20px 18px; transition: background 0.2s; }
+    .capi:hover { background: rgba(255,255,255,0.08); }
+    .capi-n { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.85); margin-bottom: 3px; }
+    .capi-s { font-size: 11px; color: rgba(255,255,255,0.38); }
+    .cap-img-w { position: relative; }
+    .cap-img-m { width: 100%; aspect-ratio: 3/4; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .cap-ov { position: absolute; top: 28px; right: -28px; background: var(--rose); color: #fff; padding: 28px 24px; width: 180px; }
+    .cap-ov-n { font-family: 'Playfair Display', serif; font-size: 40px; line-height: 1; }
+    .cap-ov-l { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; margin-top: 6px; }
+
+    /* PROCESS */
+    #process { background: var(--cream); }
+    .ph2 { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+    .ph2 .rule { margin: 20px auto; }
+    .psg { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; background: var(--border); }
+    .ps { background: var(--cream); padding: 36px 24px; text-align: center; position: relative; }
+    .ps::after { content: '→'; position: absolute; right: -10px; top: 38px; font-size: 14px; color: var(--rose); background: var(--cream); padding: 0 4px; z-index: 1; }
+    .ps:last-child::after { display: none; }
+    .ps-n { font-family: 'Playfair Display', serif; font-size: 40px; color: var(--blush); line-height: 1; margin-bottom: 16px; }
+    .ps-t { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 10px; }
+    .ps-d { font-size: 12px; line-height: 1.7; color: var(--mid); }
+
+    /* WHY */
+    #why { background: var(--section); }
+    .wg { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .wps { display: flex; flex-direction: column; }
+    .wp { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .wp:first-child { border-top: 1px solid var(--border); }
+    .wp-i { font-size: 22px; width: 44px; height: 44px; background: var(--cream); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid var(--border); }
+    .wp-t { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+    .wp-d { font-size: 13px; line-height: 1.7; color: var(--mid); }
+    .wimg { position: relative; padding-bottom: 60px; padding-right: 60px; }
+    .wimg-a { width: 75%; aspect-ratio: 4/5; background: var(--blush); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; }
+    .wimg-b { position: absolute; bottom: 0; right: 0; width: 55%; aspect-ratio: 1; background: var(--slate); border: 6px solid var(--section); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
+
+    /* DOMAINS */
+    #domains { background: var(--cream); }
+    .di { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 56px; align-items: end; }
+    .dg { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 40px; }
+    .dc { background: var(--warm); border: 1px solid var(--border); padding: 28px 24px; transition: border-color 0.2s, box-shadow 0.2s; }
+    .dc:hover { border-color: var(--rose); box-shadow: 0 4px 20px rgba(196,137,122,0.1); }
+    .dc-b { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose); display: block; margin-bottom: 10px; }
+    .dc-n { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--charcoal); margin-bottom: 8px; }
+    .dc-t { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); border: 1px solid var(--border); padding: 3px 10px; margin-bottom: 12px; }
+    .dc-w { font-size: 12px; line-height: 1.65; color: var(--mid); }
+    .ts { background: var(--slate); padding: 40px; }
+    .ts-in { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: center; }
+    .tps { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .tp-k { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blush); margin-bottom: 4px; }
+    .tp-v { font-size: 13px; color: rgba(255,255,255,0.72); }
+
+    /* CONTACT */
+    #contact { background: var(--section); }
+    .cg { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .cdets { display: flex; flex-direction: column; margin-top: 36px; }
+    .crow { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .crow:first-child { border-top: 1px solid var(--border); }
+    .ck { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose); min-width: 120px; padding-top: 2px; }
+    .cv { font-size: 15px; color: var(--charcoal); text-decoration: none; }
+    .cv:hover { color: var(--rose); }
+    .fw { background: #fff; padding: 40px; border: 1px solid var(--border); }
+    .flbl { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 8px; }
+    .frow { margin-bottom: 20px; }
+    .finp, .ftxt {
+      width: 100%; background: var(--cream); border: 1px solid var(--border);
+      color: var(--charcoal); padding: 14px 16px; font-family: 'Inter', sans-serif;
+      font-size: 14px; outline: none; transition: border-color 0.2s; display: block;
+    }
+    .finp:focus, .ftxt:focus { border-color: var(--rose); }
+    .finp::placeholder, .ftxt::placeholder { color: #BDB5AE; }
+    .ftxt { resize: vertical; }
+    .btn-s { background: var(--slate); color: #fff; border: none; padding: 15px 36px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; width: 100%; }
+    .btn-s:hover { background: var(--rose); }
+    .smsg { background: var(--cream); border: 1px solid var(--border); padding: 48px; text-align: center; display: none; }
+    .smsg.on { display: block; }
+    #fc.off { display: none; }
+
+    /* FOOTER */
+    footer { background: var(--charcoal); padding: 60px 40px 40px; }
+    .fi { max-width: 1280px; margin: 0 auto; }
+    .ft { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .fbn { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; margin-bottom: 12px; }
+    .fbd { font-size: 13px; line-height: 1.75; color: rgba(255,255,255,0.42); }
+    .fct { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rose); margin-bottom: 20px; }
+    .fcl { display: flex; flex-direction: column; gap: 10px; }
+    .fcl a { font-size: 13px; color: rgba(255,255,255,0.48); text-decoration: none; transition: color 0.2s; }
+    .fcl a:hover { color: rgba(255,255,255,0.9); }
+    .fb { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .fcp { font-size: 12px; color: rgba(255,255,255,0.28); }
+    .fbl { display: flex; gap: 24px; }
+    .fbl a { font-size: 12px; color: rgba(255,255,255,0.38); text-decoration: none; transition: color 0.2s; }
+    .fbl a:hover { color: var(--rose); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      #home { grid-template-columns: 1fr; }
+      .hl { padding: 80px 40px; }
+      .hr { min-height: 400px; }
+      .sg, .wg, .capg, .cg, .si, .di { grid-template-columns: 1fr; gap: 48px; }
+      .sgd, .psg { grid-template-columns: 1fr 1fr; }
+      .ps::after { display: none; }
+      .ft { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .ts-in { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .nl, .ncta { display: none; }
+      .hbg { display: flex; }
+      .nav-in { padding: 0 24px; }
+      .sec { padding: 64px 24px; }
+      .hl { padding: 64px 24px; }
+      .sgd, .dg, .psg, .capl { grid-template-columns: 1fr; }
+      .hstats { grid-template-columns: 1fr 1fr; }
+      .ft { grid-template-columns: 1fr; }
+      .ts { padding: 36px 24px; }
+      .tps { grid-template-columns: 1fr 1fr; }
+      .fw { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#home" class="logo">Sultan<span>.</span></a>
+    <div class="nl">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="assets/files/Sultan_Ahmed_CV.pdf" download class="ncta">Download CV</a>
+    <button class="hbg" id="mbtn" onclick="const m=document.getElementById('mn'); m.classList.toggle('open'); this.setAttribute('aria-expanded', m.classList.contains('open'));" aria-label="Menu" aria-expanded="false" aria-controls="mn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mnav" id="mn">
+  <a href="#about" onclick="this.closest('.mnav').classList.remove('open')">About</a>
+  <a href="#services" onclick="this.closest('.mnav').classList.remove('open')">Services</a>
+  <a href="#capabilities" onclick="this.closest('.mnav').classList.remove('open')">Capabilities</a>
+  <a href="#process" onclick="this.closest('.mnav').classList.remove('open')">Process</a>
+  <a href="#contact" onclick="this.closest('.mnav').classList.remove('open')">Contact</a>
+  <a href="assets/files/Sultan_Ahmed_CV.pdf" download onclick="this.closest('.mnav').classList.remove('open')">Download CV</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hl">
+    <p class="eyebrow reveal">Apparel Merchandising · Technical Product Development · Asia Sourcing</p>
+    <h1 class="htitle reveal">Design.<br>Source.<br><em>Deliver.</em><br>Done Right.</h1>
+    <p class="hsub reveal">8.5+ years combining technical fit and pattern knowledge, commercial costing, and supplier development across Bangladesh, China and Sri Lanka. Open to senior merchandising, technical product development and sourcing opportunities with international apparel brands and buying offices.</p>
+    <div class="hbtns reveal">
+      <a href="assets/files/Sultan_Ahmed_CV.pdf" download class="btn-w">Download CV</a>
+      <a href="#contact" class="btn-g">Get in Touch</a>
+    </div>
+    <div class="hstats reveal">
+      <div class="hstat"><div class="hstat-n">8.5+</div><div class="hstat-l">Years Experience</div></div>
+      <div class="hstat"><div class="hstat-n">~92-98%</div><div class="hstat-l">OTIF Delivery</div></div>
+      <div class="hstat"><div class="hstat-n">500+</div><div class="hstat-l">Styles Per Season</div></div>
+      <div class="hstat"><div class="hstat-n">3M+</div><div class="hstat-l">Pieces Managed</div></div>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="himg">
+      <div class="ph" style="flex:2;"><img class="cover-img tone-warm" src="assets/images/factory-visit.png" alt="Production floor at a Bangladesh lingerie factory" /></div>
+      <div class="ph" style="flex:1;"><img class="cover-img tone-warm" src="assets/images/product-lace.jpg" alt="Finished lingerie product photography" /></div>
+    </div>
+    <div class="hfloat">
+      <div class="hfl">Currently at</div>
+      <div class="hfv">AURA UK</div>
+      <div class="hfs">Liaison Office · Dhaka, Bangladesh</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-t">
+    <span class="mq-i">Pattern Correction &amp; Grading</span><span class="mq-i">Fit Comments &amp; Approval</span><span class="mq-i">Vendor Assessment &amp; Sourcing</span><span class="mq-i">Lingerie Sourcing</span><span class="mq-i">Open Costing</span><span class="mq-i">BOM Validation</span><span class="mq-i">Factory Liaison</span><span class="mq-i">Critical Path Management</span><span class="mq-i">MOQ Optimisation</span><span class="mq-i">Nightwear &amp; Knitwear</span><span class="mq-i">Bangladesh · China · Sri Lanka</span><span class="mq-i">Lectra CAD</span><span class="mq-i">CLO3D</span><span class="mq-i">~92-98% OTIF</span><span class="mq-i">8 Factory Partners</span>
+    <span class="mq-i">Pattern Correction &amp; Grading</span><span class="mq-i">Fit Comments &amp; Approval</span><span class="mq-i">Vendor Assessment &amp; Sourcing</span><span class="mq-i">Lingerie Sourcing</span><span class="mq-i">Open Costing</span><span class="mq-i">BOM Validation</span><span class="mq-i">Factory Liaison</span><span class="mq-i">Critical Path Management</span><span class="mq-i">MOQ Optimisation</span><span class="mq-i">Nightwear &amp; Knitwear</span><span class="mq-i">Bangladesh · China · Sri Lanka</span><span class="mq-i">Lectra CAD</span><span class="mq-i">CLO3D</span><span class="mq-i">~92-98% OTIF</span><span class="mq-i">8 Factory Partners</span>
+  </div>
+</div>
+
+<!-- STATEMENT BANNER -->
+<div class="stmt">
+  <div class="stmt-photo"><img class="tone-warm" src="assets/images/design-for-comfort.png" alt="Detail shot of a Brother sewing machine stitching lingerie fabric" /></div>
+  <div class="stmt-cap"><span>delivered with Bangladesh precision, for the UK high street.</span></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="win">
+    <div class="sg">
+      <div class="simg reveal-l">
+        <div class="simg-m" style="background-image: url('assets/images/product-swim.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
+        <div class="simg-a"><i style="font-size:22px;opacity:.3;font-style:normal">📐</i><span style="font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);opacity:.7;">Tech Pack</span></div>
+      </div>
+      <div class="reveal-r">
+        <p class="slbl">About</p>
+        <h2 class="stitle">From Sketch to Shipment,<br><em>the Sultan Ahmed Story.</em></h2>
+        <div class="rule"></div>
+        <p class="bt" style="margin-bottom:16px;">I am Sultan Ahmed — currently the sole Bangladesh merchandising lead at AURA (UK) Liaison Office, Dhaka. I independently manage end-to-end execution across 8 reputed UK buyer accounts, from concept development through bulk execution to final shipment, alongside core basic styling programmes.</p>
+        <p class="bt" style="margin-bottom:16px;">My specialism runs deep into the technical side of the garment — pattern correction and grading, resolving fit comments through to buyer sign-off, and material consumption analysis in Lectra CAD — paired with hands-on vendor assessment and sourcing experience across factories in Bangladesh, China and Sri Lanka.</p>
+        <p class="bt" style="margin-bottom:36px;">With a B.Sc. and M.Sc. in Textile Engineering from DUET, Gazipur, and a running PGD in Garments Business from IBA, University of Dhaka, I bring both technical precision and commercial acumen to every programme I manage.</p>
+        <div class="creds">
+          <div class="cred"><div class="cred-y">Dec 2023–Now</div><div><div class="cred-r">Merchandising Operations Lead</div><div class="cred-c">AURA (UK) Liaison Office · Uttara, Dhaka</div></div></div>
+          <div class="cred"><div class="cred-y">Apr 2021–Nov 2023</div><div><div class="cred-r">Senior Merchandiser</div><div class="cred-c">AURA (UK) Liaison Office · Uttara, Dhaka</div></div></div>
+          <div class="cred"><div class="cred-y">Jul 2018–Mar 2021</div><div><div class="cred-r">Merchandiser</div><div class="cred-c">Crystal International · Bangladesh</div></div></div>
+          <div class="cred"><div class="cred-y">Jan–Jun 2018</div><div><div class="cred-r">Assistant Merchandiser</div><div class="cred-c">Crystal International · Bangladesh</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="sec">
+  <div class="win">
+    <div class="si">
+      <div class="reveal">
+        <p class="slbl">Core Expertise</p>
+        <h2 class="stitle">What I bring<br>to your<br>&amp; <em>merchandising team.</em></h2>
+      </div>
+      <div class="reveal">
+        <div class="rule"></div>
+        <p class="bt">8.5+ years of end-to-end lingerie, nightwear, knitwear and woven merchandising — from concept and costing through to bulk shipment — built across UK buying-office and factory environments in Bangladesh, China and Sri Lanka.</p>
+      </div>
+    </div>
+    <div class="sgd">
+      <div class="sc reveal"><span class="sc-n">01</span><h3 class="sc-t">Intimate &amp; Lingerie Sourcing</h3><p class="sc-d">End-to-end sourcing for lingerie, nightwear and intimate apparel from certified manufacturers across Bangladesh, China and Sri Lanka. Hands-on pattern correction, grading and fit-comment resolution, with full accountability from concept to bulk shipment.</p><div class="sc-tags"><span class="sc-tag">Lingerie</span><span class="sc-tag">Nightwear</span><span class="sc-tag">Knitwear</span></div></div>
+      <div class="sc reveal"><span class="sc-n">02</span><h3 class="sc-t">Open Costing &amp; Margin Review</h3><p class="sc-d">Lectra-based material consumption analysis, BOM validation, pre/post costing, SMV negotiation and commercial benchmarking aligned to UK retail margin requirements.</p><div class="sc-tags"><span class="sc-tag">Lectra CAD</span><span class="sc-tag">BOM</span><span class="sc-tag">Margin</span></div></div>
+      <div class="sc reveal"><span class="sc-n">03</span><h3 class="sc-t">Factory Liaison &amp; Compliance</h3><p class="sc-d">Sole on-the-ground liaison between UK buyers and manufacturing partners across Bangladesh, China and Sri Lanka. Vendor assessment, factory capacity planning, critical path management and compliance monitoring.</p><div class="sc-tags"><span class="sc-tag">OTIF</span><span class="sc-tag">Compliance</span><span class="sc-tag">QC</span></div></div>
+      <div class="sc reveal"><span class="sc-n">04</span><h3 class="sc-t">Vendor Sourcing &amp; Selection</h3><p class="sc-d">Extensive vendor assessment and supplier identification experience — factory audits, commercial negotiation and onboarding new manufacturing partners across Bangladesh, China and Sri Lanka.</p><div class="sc-tags"><span class="sc-tag">Vendor Sourcing</span><span class="sc-tag">Assessment</span><span class="sc-tag">Negotiation</span></div></div>
+      <div class="sc reveal"><span class="sc-n">05</span><h3 class="sc-t">Product Development</h3><p class="sc-d">Concept-to-bulk lifecycle management — tech packs, sample approvals, packaging development and production handover across lingerie and woven categories.</p><div class="sc-tags"><span class="sc-tag">Tech Pack</span><span class="sc-tag">Sampling</span><span class="sc-tag">PLM</span></div></div>
+      <div class="sc reveal"><span class="sc-n">06</span><h3 class="sc-t">Digital &amp; Tech Fluency</h3><p class="sc-d">Comfortable building internal tools when a team needs them — supply chain dashboards, ERP integrations and reporting apps using the MERN stack. A practical edge most merchandisers don't bring.</p><div class="sc-tags"><span class="sc-tag">MERN</span><span class="sc-tag">React</span><span class="sc-tag">MongoDB</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIO -->
+<section id="studio" class="sec">
+  <div class="win">
+    <div class="stg">
+      <div class="reveal-l">
+        <p class="slbl">Design &amp; Development</p>
+        <h2 class="stitle">Every range starts<br>on <em>this table.</em></h2>
+        <div class="rule"></div>
+        <p class="bt">Colour palettes, lace and trim options, and reference boards are reviewed against the buyer's brief before a single tech pack is issued — helping reduce repeated sample corrections and improve fit-approval efficiency.</p>
+      </div>
+      <div class="stg-img reveal-r">
+        <img class="tone-warm" src="assets/images/development-flatlay.png" alt="Lingerie development flatlay — lace swatches, colour cards and sample garments" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities" class="sec">
+  <div class="win">
+    <div class="capg">
+      <div class="reveal-l">
+        <p class="slbl" style="color:var(--blush);">Capabilities</p>
+        <h2 class="stitle" style="color:#fff;">Technical expertise<br>that sets us <em style="color:var(--blush);">apart.</em></h2>
+        <div class="rule"></div>
+        <p class="bt" style="color:rgba(255,255,255,0.52); margin-bottom:0;">Rare combination of deep technical textile knowledge, Lectra &amp; CLO3D proficiency, and commercial merchandising execution — all under one specialist.</p>
+        <div class="capl">
+          <div class="capi"><div class="capi-n">Pattern Correction &amp; Grading</div><div class="capi-s">Fit-for-purpose adjustments</div></div>
+          <div class="capi"><div class="capi-n">Fit Comments &amp; Approval</div><div class="capi-s">Sample fit resolution</div></div>
+          <div class="capi"><div class="capi-n">Vendor Assessment &amp; Sourcing</div><div class="capi-s">Factory selection across Asia</div></div>
+          <div class="capi"><div class="capi-n">Open Costing &amp; BOM</div><div class="capi-s">Pre &amp; post analysis</div></div>
+          <div class="capi"><div class="capi-n">Lectra CAD</div><div class="capi-s">Material consumption</div></div>
+          <div class="capi"><div class="capi-n">CLO3D</div><div class="capi-s">Virtual sampling</div></div>
+          <div class="capi"><div class="capi-n">MOQ/MCQ Optimisation</div><div class="capi-s">Supplier negotiation</div></div>
+          <div class="capi"><div class="capi-n">Critical Path Mgmt</div><div class="capi-s">T&amp;A planning</div></div>
+          <div class="capi"><div class="capi-n">Power BI &amp; Excel</div><div class="capi-s">Advanced reporting</div></div>
+          <div class="capi"><div class="capi-n">Adobe Illustrator</div><div class="capi-s">Tech flat sketches</div></div>
+        </div>
+      </div>
+      <div class="cap-img-w reveal-r">
+        <div class="cap-img-m" style="background-image: url('assets/images/development.png'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
+        <div class="cap-ov"><div class="cap-ov-n">8</div><div class="cap-ov-l">Factory partners across Bangladesh, China &amp; Sri Lanka</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT BANNER -->
+<div class="stmt">
+  <div class="stmt-photo"><img class="tone-warm" src="assets/images/sketch-to-stitch.png" alt="Pinning delicate lace fabric onto a lingerie mannequin during development" /></div>
+  <div class="stmt-cap"><span>engineered for fit, finished for UK retail.</span></div>
+</div>
+
+<!-- PROCESS -->
+<section id="process" class="sec">
+  <div class="win">
+    <div class="ph2 reveal">
+      <p class="slbl">How It Works</p>
+      <h2 class="stitle">Our end-to-end<br><em>sourcing process.</em></h2>
+      <div class="rule"></div>
+      <p class="bt" style="font-size:14px;">From your first brief to final shipment — a structured, transparent process that protects your margins and your timeline.</p>
+    </div>
+    <div class="psg">
+      <div class="ps reveal"><div class="ps-n">01</div><div class="ps-t">Brief &amp; Costing</div><p class="ps-d">Receive buyer brief. Open cost validation, BOM setup, Lectra-based fabric consumption analysis.</p></div>
+      <div class="ps reveal"><div class="ps-n">02</div><div class="ps-t">Supplier Selection</div><p class="ps-d">Factory benchmarking, MOQ negotiation, compliance verification and capacity planning.</p></div>
+      <div class="ps reveal"><div class="ps-n">03</div><div class="ps-t">Development</div><p class="ps-d">Tech pack review, proto and fit sample management, material booking and approval tracking.</p></div>
+      <div class="ps reveal"><div class="ps-n">04</div><div class="ps-t">Production</div><p class="ps-d">Bulk execution oversight, inline and final QC, compliance monitoring and critical path updates.</p></div>
+      <div class="ps reveal"><div class="ps-n">05</div><div class="ps-t">Shipment</div><p class="ps-d">Shipment execution, commercial documentation, logistics coordination and OTIF reporting.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="sec">
+  <div class="win">
+    <div class="wg">
+      <div class="reveal-l">
+        <p class="slbl">Why Hire Me</p>
+        <h2 class="stitle">A dependable<br>Bangladesh <em>specialist.</em></h2>
+        <div class="rule"></div>
+        <div class="wps">
+          <div class="wp"><div class="wp-i">✂️</div><div><div class="wp-t">Hands-On Technical Specialist</div><div class="wp-d">Pattern corrections, grading and fit-comment resolution handled hands-on as part of my day-to-day role, not just overseen from a distance.</div></div></div>
+          <div class="wp"><div class="wp-i">🎯</div><div><div class="wp-t">Sole, Accountable Point of Contact</div><div class="wp-d">Comfortable owning a programme end-to-end with minimal oversight — no hand-holding required between Asia and a UK team.</div></div></div>
+          <div class="wp"><div class="wp-i">📊</div><div><div class="wp-t">Margin-First Commercial Approach</div><div class="wp-d">Every costing decision is reviewed line by line. Lectra-based analysis helps surface fabric wastage and inflated supplier quotes before they hit your margin.</div></div></div>
+          <div class="wp"><div class="wp-i">🏭</div><div><div class="wp-t">Regional Vendor Network</div><div class="wp-d">Direct working relationships and hands-on vendor assessment experience with manufacturers across Bangladesh, China and Sri Lanka, supporting a fast onboarding process.</div></div></div>
+          <div class="wp"><div class="wp-i">⚡</div><div><div class="wp-t">Proven ~92-98% OTIF Track Record</div><div class="wp-d">Consistent on-time-in-full delivery across 3M+ pieces and 500+ styles demonstrates the operational discipline UK buyers rely on.</div></div></div>
+        </div>
+      </div>
+      <div class="wimg reveal-r">
+        <div class="wimg-a" style="overflow:hidden;"><img class="cover-img tone-warm" src="assets/images/fitting-session.png" alt="Fit session — checking garment fit and construction on a live model" /></div>
+        <div class="wimg-b"><i style="font-size:28px;opacity:.55;font-style:normal">📦</i><span style="font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);">Shipment &amp; Packaging</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section id="track" class="sec">
+  <div class="win">
+    <div class="track-lead reveal">
+      <p class="slbl">Selected Track Record</p>
+      <h2 class="stitle" style="font-size:clamp(24px,3vw,34px);">UK high-street &amp; specialist<br>lingerie retail programmes</h2>
+      <div class="rule" style="margin:20px auto;"></div>
+      <p class="bt" style="margin-bottom:0;">Full buyer account names available on request, subject to confidentiality with my current employer.</p>
+    </div>
+    <div class="track-grid">
+      <div class="track-item reveal"><div class="track-n">8</div><div class="track-l">UK buyer accounts managed</div></div>
+      <div class="track-item reveal"><div class="track-n">8</div><div class="track-l">Factory partners, Bangladesh/China/Sri Lanka</div></div>
+      <div class="track-item reveal"><div class="track-n">~92-98%</div><div class="track-l">OTIF delivery performance</div></div>
+      <div class="track-item reveal"><div class="track-n">5-8%</div><div class="track-l">FOB cost-saving experience</div></div>
+      <div class="track-item reveal"><div class="track-n">500+</div><div class="track-l">Styles per season</div></div>
+      <div class="track-item reveal"><div class="track-n">3M+</div><div class="track-l">Pieces managed</div></div>
+      <div class="track-item reveal"><div class="track-n">✓</div><div class="track-l">Pattern correction &amp; grading</div></div>
+      <div class="track-item reveal"><div class="track-n">✓</div><div class="track-l">Lectra-based consumption analysis</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="win">
+    <div class="cg">
+      <div>
+        <p class="slbl reveal">Contact</p>
+        <h2 class="stitle reveal">Let's talk about<br>the right<br><em>opportunity.</em></h2>
+        <div class="rule reveal"></div>
+        <p class="bt reveal">If you're hiring for a Merchandising, Buying, or Sourcing role — or just want to discuss lingerie and nightwear sourcing from Bangladesh — I'd welcome the conversation.</p>
+        <div class="cdets reveal">
+          <div class="crow"><div class="ck">Email</div><a href="mailto:sultan.duet.te@gmail.com" class="cv">sultan.duet.te@gmail.com</a></div>
+          <div class="crow"><div class="ck">WhatsApp</div><a href="https://wa.me/8801740227207" class="cv">+880-1740-227207</a></div>
+          <div class="crow"><div class="ck">Location</div><span class="cv" style="color:var(--mid);">Uttara, Dhaka, Bangladesh</span></div>
+          <div class="crow"><div class="ck">CV</div><a href="assets/files/Sultan_Ahmed_CV.pdf" download class="cv">Download PDF ↓</a></div>
+          <div class="crow"><div class="ck">Capability Profile</div><a href="assets/files/Sultan_Ahmed_Capability_Profile.pdf" download class="cv">One-page summary ↓</a></div>
+          <div class="crow"><div class="ck">LinkedIn</div><a href="https://www.linkedin.com/in/PASTE-YOUR-LINKEDIN-HANDLE-HERE" target="_blank" rel="noopener noreferrer" class="cv">linkedin.com/in/sultan-ahmed</a></div>
+          <div class="crow"><div class="ck">GitHub</div><a href="https://github.com/Sultaan-Ahmed" target="_blank" rel="noopener noreferrer" class="cv">github.com/Sultaan-Ahmed</a></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="fw">
+          <div id="fc">
+            <p class="slbl" style="margin-bottom:24px;">Send a Message</p>
+            <div class="frow"><label class="flbl">Full Name</label><input type="text" id="cfn" class="finp" placeholder="Your full name" /></div>
+            <div class="frow"><label class="flbl">Email Address</label><input type="email" id="cfe" class="finp" placeholder="your@email.com" /></div>
+            <div class="frow"><label class="flbl">Company / Brand</label><input type="text" id="cfc" class="finp" placeholder="Your company name (optional)" /></div>
+            <div class="frow"><label class="flbl">Message</label><textarea id="cfm" class="ftxt" placeholder="Role you're hiring for, or what you'd like to discuss..." rows="5"></textarea></div>
+            <button class="btn-s" onclick="submitForm()">Send Message</button>
+          </div>
+          <div class="smsg" id="sm"><div style="font-size:40px;margin-bottom:16px;">✓</div><h3 class="serif" style="font-size:26px;font-weight:400;margin-bottom:12px;color:var(--charcoal);">Message received.</h3><p style="font-size:14px;color:var(--mid);line-height:1.7;">Thank you for reaching out. Sultan will respond within 24 business hours.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div class="ft">
+      <div>
+        <div class="fbn">Sultan Ahmed<span style="color:var(--rose);">.</span></div>
+        <p class="fbd">Merchandising Operations Lead specialising in intimate apparel, nightwear and knitwear — 8.5+ years across UK buying offices and Bangladesh factories, open to new opportunities.</p>
+      </div>
+      <div>
+        <div class="fct">Expertise</div>
+        <div class="fcl">
+          <a href="#services">Lingerie Sourcing</a>
+          <a href="#services">Pattern, Fit &amp; Grading</a>
+          <a href="#services">Vendor Sourcing &amp; Assessment</a>
+          <a href="#services">Open Costing</a>
+          <a href="#services">Factory Liaison</a>
+          <a href="#services">Product Development</a>
+        </div>
+      </div>
+      <div>
+        <div class="fct">Explore</div>
+        <div class="fcl">
+          <a href="#about">About</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#process">Our Process</a>
+          <a href="#why">Why Hire Me</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="fct">Get In Touch</div>
+        <div class="fcl">
+          <a href="mailto:sultan.duet.te@gmail.com">sultan.duet.te@gmail.com</a>
+          <a href="https://wa.me/8801740227207">+880-1740-227207</a>
+          <a href="assets/files/Sultan_Ahmed_CV.pdf" download>Download CV ↓</a>
+          <a href="assets/files/Sultan_Ahmed_Capability_Profile.pdf" download>Capability Profile ↓</a>
+          <a href="https://www.linkedin.com/in/PASTE-YOUR-LINKEDIN-HANDLE-HERE" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a>
+          <a href="https://github.com/Sultaan-Ahmed" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="fb">
+      <div class="fcp">© 2025 Sultan Ahmed. All Rights Reserved. Bangladesh Merchandising Operations.</div>
+      <div class="fbl"><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('up', window.scrollY > 20);
+    const secs = document.querySelectorAll('section[id]');
+    const links = document.querySelectorAll('.nl a');
+    let cur = '';
+    secs.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+    links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + cur));
+  });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => io.observe(el));
+
+  async function submitForm() {
+    const n = document.getElementById('cfn').value.trim();
+    const e = document.getElementById('cfe').value.trim();
+    const c = document.getElementById('cfc').value.trim();
+    const m = document.getElementById('cfm').value.trim();
+    if (!n || !e || !m) { alert('Please fill in your name, email and message.'); return; }
+
+    const btn = document.querySelector('.btn-s');
+    const originalLabel = btn.textContent;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/sultan.duet.te@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: n,
+          email: e,
+          company: c || '(not provided)',
+          message: m,
+          _subject: 'New enquiry — portfolio website',
+        }),
+      });
+      if (!res.ok) throw new Error('Request failed with status ' + res.status);
+      document.getElementById('fc').classList.add('off');
+      document.getElementById('sm').classList.add('on');
+    } catch (err) {
+      btn.textContent = originalLabel;
+      btn.disabled = false;
+      alert('Something went wrong sending your message. Please email sultan.duet.te@gmail.com directly instead — sorry for the inconvenience.');
+    }
+  }
+</script>
+</body>
+</html>
